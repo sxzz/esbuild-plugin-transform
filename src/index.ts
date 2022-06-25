@@ -1,7 +1,8 @@
 import fs from 'fs'
+import path from 'path'
 import { unlink, writeFile } from 'fs/promises'
 import { resolveOptions } from './options'
-import { backupFile } from './utils'
+import { backupFile, createTempFile } from './utils'
 import type { Options } from './options'
 import type {
   OnLoadArgs,
@@ -32,34 +33,55 @@ export const Transform = (userOptions: Options = {}): Plugin => {
         async (args) => {
           const isRealModule = fs.existsSync(args.path)
 
-          let transformedPath = args.path
-          if (isRealModule) {
-            transformedPath = await backupFile(args.path, 'transformed')
-          }
+          let transformedPath: string | undefined
           let transformed: OnLoadResult = { pluginData: args.pluginData }
+          let contents: string | Uint8Array | undefined
+
+          function getTransformedFile() {
+            // Returns original path when first plugin
+            if (!contents && !isRealModule) return args.path
+
+            if (!transformedPath) {
+              if (isRealModule) {
+                const dirName = path.dirname(args.path)
+                const filename = path.basename(args.path)
+                transformedPath = backupFile(
+                  dirName,
+                  'transformed',
+                  filename,
+                  contents
+                )
+              } else {
+                transformedPath = createTempFile(args.path, contents)
+              }
+            }
+            return transformedPath
+          }
 
           for (const [options, onLoad] of onLoads) {
             if (!filterOnLoad(options, args)) continue
 
             const result = await onLoad({
               ...args,
-              path: transformedPath,
+              get path() {
+                return getTransformedFile()
+              },
               pluginData: transformed.pluginData,
             })
             if (!result || typeof result.contents === 'undefined') continue
 
             transformed = result
+            contents = result.contents
 
-            if (isRealModule)
-              await writeFile(transformedPath, result.contents, 'utf-8')
+            if (transformedPath)
+              await writeFile(transformedPath, contents, 'utf-8')
           }
 
-          if (fs.existsSync(transformedPath)) {
+          if (transformedPath && fs.existsSync(transformedPath)) {
             await unlink(transformedPath)
           }
 
-          if (!transformed.contents) return
-
+          if (typeof transformed.contents === 'undefined') return
           return transformed
         }
       )

@@ -1,0 +1,17 @@
+// Vitest Snapshot v1
+
+exports[`transform > basic 1`] = `
+"\\"use strict\\";
+(() => {
+  // tests/fixtures/basic.ts
+  var expected = \\"expected\\";
+})();"
+`;
+
+exports[`transform > virtual module 1`] = `
+"\\"use strict\\";
+(() => {
+  // ../../../../../vmodule/foo
+  var expected = \\"expected\\";
+})();"
+`;

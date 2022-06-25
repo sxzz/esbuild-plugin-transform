@@ -30,6 +30,7 @@
   "devDependencies": {
     "@sxzz/eslint-config-prettier": "^2.2.2",
     "@sxzz/eslint-config-ts": "^2.2.2",
+    "@types/fs-extra": "^9.0.13",
     "@types/node": "*",
     "bumpp": "^8.2.1",
     "esbuild": "^0.14.47",
@@ -43,5 +44,8 @@
   },
   "engines": {
     "node": ">=14.19.0"
+  },
+  "dependencies": {
+    "fs-extra": "^10.1.0"
   }
 }
