@@ -11,7 +11,7 @@ exports[`transform > basic 1`] = `
 exports[`transform > virtual module 1`] = `
 "\\"use strict\\";
 (() => {
-  // ../../../../../vmodule/foo
+  // vmodule:/vmodule/foo
   var expected = \\"expected\\";
 })();"
 `;

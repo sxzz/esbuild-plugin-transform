@@ -31,6 +31,7 @@ describe('transform', () => {
       setup(build) {
         build.onResolve({ filter: /vmodule:foo/ }, () => ({
           path: '/vmodule/foo',
+          namespace: 'vmodule',
         }))
       },
     }
