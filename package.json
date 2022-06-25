@@ -27,6 +27,9 @@
     "release": "bumpp --commit --push --tag && pnpm publish",
     "prepublishOnly": "pnpm run build"
   },
+  "dependencies": {
+    "fs-extra": "^10.1.0"
+  },
   "devDependencies": {
     "@sxzz/eslint-config-prettier": "^2.2.2",
     "@sxzz/eslint-config-ts": "^2.2.2",
@@ -44,8 +47,5 @@
   },
   "engines": {
     "node": ">=14.19.0"
-  },
-  "dependencies": {
-    "fs-extra": "^10.1.0"
   }
 }
