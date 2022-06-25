@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { unlink, writeFile } from 'fs/promises'
+import { rm, writeFile } from 'fs/promises'
 import { resolveOptions } from './options'
 import { backupFile, createTempFile } from './utils'
 import type { Options } from './options'
@@ -33,7 +33,7 @@ export const Transform = (userOptions: Options = {}): Plugin => {
         async (args) => {
           const isRealModule = fs.existsSync(args.path)
 
-          let transformedPath: string | undefined
+          let transformedPath: [string, string] | undefined
           let transformed: OnLoadResult = { pluginData: args.pluginData }
           let contents: string | Uint8Array | undefined
 
@@ -55,7 +55,7 @@ export const Transform = (userOptions: Options = {}): Plugin => {
                 transformedPath = createTempFile(args.path, contents)
               }
             }
-            return transformedPath
+            return transformedPath[1]
           }
 
           for (const [options, onLoad] of onLoads) {
@@ -74,11 +74,14 @@ export const Transform = (userOptions: Options = {}): Plugin => {
             contents = result.contents
 
             if (transformedPath)
-              await writeFile(transformedPath, contents, 'utf-8')
+              await writeFile(transformedPath[1], contents, 'utf-8')
           }
 
-          if (transformedPath && fs.existsSync(transformedPath)) {
-            await unlink(transformedPath)
+          if (transformedPath) {
+            await rm(transformedPath[0], {
+              recursive: true,
+              force: true,
+            })
           }
 
           if (typeof transformed.contents === 'undefined') return

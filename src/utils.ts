@@ -12,7 +12,7 @@ export function backupFile(
   dirName: string,
   filename: string,
   contents?: Uint8Array | string
-) {
+): [string, string] {
   let id = random()
   let backupPath: string
 
@@ -30,7 +30,10 @@ export function backupFile(
     } else {
       writeFileSync(backupPath, contents, 'utf-8')
     }
-    return backupPath
+    return [
+      path.resolve(baseDir, `${dirName}${id}`.split(path.sep)[0]),
+      backupPath,
+    ]
     // eslint-disable-next-line no-constant-condition
   } while (true)
 }
@@ -40,6 +43,5 @@ export function createTempFile(
   filePath: string,
   contents?: string | Uint8Array
 ) {
-  const filename = path.isAbsolute(filePath) ? filePath.slice(1) : filePath
-  return backupFile(tempDir, '', filename, contents ?? '')
+  return backupFile(tempDir, '', path.basename(filePath), contents ?? '')
 }
