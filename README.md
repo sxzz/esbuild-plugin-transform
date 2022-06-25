@@ -3,8 +3,7 @@
 [![Unit Test](https://github.com/sxzz/esbuild-plugin-transform/actions/workflows/unit-test.yml/badge.svg)](https://github.com/sxzz/esbuild-plugin-transform/actions/workflows/unit-test.yml)
 
 Pipe transformation plugins for [esbuild](https://esbuild.github.io/).
-
-Special support for plugins is not required.
+Compatible with existing esbuild plugins.
 
 Related issue: https://github.com/evanw/esbuild/issues/1902
 
