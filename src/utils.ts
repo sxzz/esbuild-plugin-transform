@@ -1,5 +1,5 @@
 import { tmpdir } from 'os'
-import fs, { copyFileSync, existsSync, writeFileSync } from 'fs'
+import { existsSync, writeFileSync } from 'fs'
 import path from 'path'
 import { ensureDirSync } from 'fs-extra'
 
@@ -11,7 +11,7 @@ export function backupFile(
   baseDir: string,
   dirName: string,
   filename: string,
-  contents?: Uint8Array | string
+  contents: Uint8Array | string
 ): [string, string] {
   let id = random()
   let backupPath: string
@@ -24,12 +24,8 @@ export function backupFile(
     }
 
     ensureDirSync(path.dirname(backupPath))
-    if (!contents) {
-      const originalFile = path.resolve(baseDir, filename)
-      copyFileSync(originalFile, backupPath, fs.constants.COPYFILE_EXCL)
-    } else {
-      writeFileSync(backupPath, contents, 'utf-8')
-    }
+    writeFileSync(backupPath, contents, 'utf-8')
+
     return [
       path.resolve(baseDir, `${dirName}${id}`.split(path.sep)[0]),
       backupPath,
@@ -41,7 +37,7 @@ export function backupFile(
 const tempDir = tmpdir()
 export function createTempFile(
   filePath: string,
-  contents?: string | Uint8Array
+  contents: string | Uint8Array
 ) {
-  return backupFile(tempDir, '', path.basename(filePath), contents ?? '')
+  return backupFile(tempDir, '', path.basename(filePath), contents)
 }

@@ -39,7 +39,7 @@ export const Transform = (userOptions: Options = {}): Plugin => {
 
           function getTransformedFile() {
             // Returns original path when first plugin
-            if (!contents && !isRealModule) return args.path
+            if (!contents) return args.path
 
             if (!transformedPath) {
               if (isRealModule) {
