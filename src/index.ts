@@ -16,7 +16,7 @@ export const Transform = (userOptions: Options = {}): Plugin => {
   const onLoads: Parameters<PluginBuild['onLoad']>[] = []
 
   return {
-    name: 'pipe',
+    name: 'esbuild-plugin-transform',
     async setup(build) {
       for (const plugin of options.plugins) {
         await plugin.setup({
