@@ -1,11 +1,8 @@
 import { tmpdir } from 'os'
 import { existsSync, writeFileSync } from 'fs'
 import path from 'path'
+import { randomUUID } from 'crypto'
 import { ensureDirSync } from 'fs-extra'
-
-function random() {
-  return Math.trunc(Math.random() * 10000)
-}
 
 export function backupFile(
   baseDir: string,
@@ -13,13 +10,12 @@ export function backupFile(
   filename: string,
   contents: Uint8Array | string
 ): [string, string] {
-  let id = random()
   let backupPath: string
 
   do {
+    const id = randomUUID()
     backupPath = path.resolve(baseDir, `${dirName}${id}`, filename)
     if (existsSync(backupPath)) {
-      id++
       continue
     }
 
