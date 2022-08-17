@@ -1,6 +1,6 @@
-import fs from 'fs'
-import path from 'path'
-import { rm, writeFile } from 'fs/promises'
+import { existsSync } from 'node:fs'
+import path from 'node:path'
+import { rm, writeFile } from 'node:fs/promises'
 import { resolveOptions } from './options'
 import { backupFile, createTempFile } from './utils'
 import type { Options } from './options'
@@ -31,7 +31,7 @@ export const Transform = (userOptions: Options = {}): Plugin => {
       build.onLoad(
         { filter: options.filter, namespace: options.namespace },
         async (args) => {
-          const isRealModule = fs.existsSync(args.path)
+          const isRealModule = existsSync(args.path)
 
           let transformedPath: [string, string] | undefined
           let transformed: OnLoadResult = { pluginData: args.pluginData }

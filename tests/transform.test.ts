@@ -1,6 +1,4 @@
-/* eslint-disable unicorn/prefer-string-replace-all */
-
-import path from 'path'
+import path from 'node:path'
 import { describe, expect, test } from 'vitest'
 import { PluginWrapper, fixtures, getOutput } from './_utils'
 import type { Plugin } from 'esbuild'

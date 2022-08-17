@@ -1,7 +1,7 @@
-import { tmpdir } from 'os'
-import { existsSync, writeFileSync } from 'fs'
-import path from 'path'
-import { randomUUID } from 'crypto'
+import { tmpdir } from 'node:os'
+import { existsSync, writeFileSync } from 'node:fs'
+import path from 'node:path'
+import { randomUUID } from 'node:crypto'
 import { ensureDirSync } from 'fs-extra'
 
 export function backupFile(
