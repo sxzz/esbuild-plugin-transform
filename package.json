@@ -28,7 +28,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "fs-extra": "^10.1.0"
+    "fs-extra": "^11.1.0"
   },
   "devDependencies": {
     "@sxzz/eslint-config-prettier": "^2.4.4",
