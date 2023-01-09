@@ -33,7 +33,7 @@
   "devDependencies": {
     "@sxzz/eslint-config-prettier": "^2.4.4",
     "@sxzz/eslint-config-ts": "^2.4.4",
-    "@types/fs-extra": "^9.0.13",
+    "@types/fs-extra": "^11.0.0",
     "@types/node": "*",
     "bumpp": "^8.2.1",
     "esbuild": "^0.15.18",
