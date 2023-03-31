@@ -35,7 +35,7 @@
     "@sxzz/eslint-config-ts": "^2.4.4",
     "@types/fs-extra": "^11.0.0",
     "@types/node": "*",
-    "bumpp": "^8.2.1",
+    "bumpp": "^9.1.0",
     "esbuild": "^0.15.18",
     "eslint": "^8.29.0",
     "eslint-define-config": "^1.12.0",
