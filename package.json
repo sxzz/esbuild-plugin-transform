@@ -1,7 +1,7 @@
 {
   "name": "esbuild-plugin-transform",
   "version": "0.3.0",
-  "packageManager": "pnpm@7.18.0",
+  "packageManager": "pnpm@7.30.5",
   "description": "Pipe transformation plugins for esbuild.",
   "license": "MIT",
   "files": [
@@ -28,22 +28,22 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "fs-extra": "^11.1.0"
+    "fs-extra": "^11.1.1"
   },
   "devDependencies": {
-    "@sxzz/eslint-config-prettier": "^2.4.4",
-    "@sxzz/eslint-config-ts": "^2.4.4",
-    "@types/fs-extra": "^11.0.0",
+    "@sxzz/eslint-config-prettier": "^2.4.6",
+    "@sxzz/eslint-config-ts": "^2.4.6",
+    "@types/fs-extra": "^11.0.1",
     "@types/node": "*",
     "bumpp": "^9.1.0",
-    "esbuild": "^0.15.18",
-    "eslint": "^8.29.0",
-    "eslint-define-config": "^1.12.0",
+    "esbuild": "^0.17.15",
+    "eslint": "^8.37.0",
+    "eslint-define-config": "^1.17.0",
     "fast-glob": "^3.2.12",
-    "prettier": "^2.8.0",
-    "tsup": "^6.5.0",
-    "typescript": "^4.9.3",
-    "vitest": "^0.25.3"
+    "prettier": "^2.8.7",
+    "tsup": "^6.7.0",
+    "typescript": "^4.9.5",
+    "vitest": "^0.29.8"
   },
   "engines": {
     "node": ">=14.19.0"
