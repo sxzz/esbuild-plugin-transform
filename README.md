@@ -46,4 +46,4 @@ Thanks to [esbuild-plugin-pipe](https://github.com/nativew/esbuild-plugin-pipe) 
 
 ## License
 
-[MIT](./LICENSE) License © 2022 [三咲智子](https://github.com/sxzz)
+[MIT](./LICENSE) License © 2022-PRESENT [三咲智子](https://github.com/sxzz)
