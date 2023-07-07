@@ -1,9 +1,8 @@
 import path from 'node:path'
 import { TextDecoder } from 'node:util'
 import { readFile } from 'node:fs/promises'
-import { build } from 'esbuild'
+import { type Plugin, build } from 'esbuild'
 import { Transform } from '../src'
-import type { Plugin } from 'esbuild'
 
 export const fixtures = path.resolve(__dirname, 'fixtures')
 

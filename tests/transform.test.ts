@@ -1,15 +1,15 @@
 import path from 'node:path'
 import { describe, expect, test } from 'vitest'
+import { type Plugin } from 'esbuild'
 import { PluginWrapper, fixtures, getOutput } from './_utils'
-import type { Plugin } from 'esbuild'
 
 describe('transform', () => {
   test('basic', async () => {
     const plugin1 = PluginWrapper('plugin1', (contents) =>
-      contents.replace(/foo/g, 'bar')
+      contents.replaceAll('foo', 'bar')
     )
     const plugin2 = PluginWrapper('plugin2', (contents) =>
-      contents.replace(/bar/g, 'expected')
+      contents.replaceAll('bar', 'expected')
     )
 
     const contents = await getOutput(path.resolve(fixtures, 'basic.ts'), [
@@ -40,7 +40,7 @@ describe('transform', () => {
     )
     const plugin2 = PluginWrapper(
       'plugin2',
-      (contents) => contents.replace(/foo/g, 'expected'),
+      (contents) => contents.replaceAll('foo', 'expected'),
       /\/vmodule\/foo/
     )
 

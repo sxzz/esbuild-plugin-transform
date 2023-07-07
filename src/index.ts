@@ -1,16 +1,15 @@
 import { existsSync } from 'node:fs'
 import path from 'node:path'
 import { rm, writeFile } from 'node:fs/promises'
-import { resolveOptions } from './options'
-import { backupFile, createTempFile } from './utils'
-import type { Options } from './options'
-import type {
-  OnLoadArgs,
-  OnLoadOptions,
-  OnLoadResult,
-  Plugin,
-  PluginBuild,
+import {
+  type OnLoadArgs,
+  type OnLoadOptions,
+  type OnLoadResult,
+  type Plugin,
+  type PluginBuild,
 } from 'esbuild'
+import { type Options, resolveOptions } from './options'
+import { backupFile, createTempFile } from './utils'
 
 export const Transform = (userOptions: Options = {}): Plugin => {
   const options = resolveOptions(userOptions)

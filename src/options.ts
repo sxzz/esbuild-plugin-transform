@@ -1,4 +1,4 @@
-import type { OnLoadOptions, Plugin } from 'esbuild'
+import { type OnLoadOptions, type Plugin } from 'esbuild'
 
 export interface Options extends Partial<OnLoadOptions> {
   namespace?: string
