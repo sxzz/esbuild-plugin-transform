@@ -13,16 +13,17 @@ import { backupFile, createTempFile } from './utils'
 
 export const Transform = (userOptions: Options = {}): Plugin => {
   const options = resolveOptions(userOptions)
-  const onLoads: Parameters<PluginBuild['onLoad']>[] = []
 
   return {
     name: 'esbuild-plugin-transform',
     async setup(build) {
+      const onLoads: Set<Parameters<PluginBuild['onLoad']>> = new Set()
+
       for (const plugin of options.plugins) {
         await plugin.setup({
           ...build,
           onLoad(...args) {
-            onLoads.push(args)
+            onLoads.add(args)
           },
         })
       }
