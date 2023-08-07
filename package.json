@@ -16,8 +16,8 @@
         "require": "./dist/index.d.ts",
         "import": "./dist/index.d.mts"
       },
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
     }
   },
   "publishConfig": {
